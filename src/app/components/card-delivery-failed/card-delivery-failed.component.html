@@ -1,0 +1,22 @@
+<mat-card class="card-container" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Entregas com Insucesso</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Motorista </th>
+        <td mat-cell *matCellDef="let element"> {{  element?.name  }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="failedTotal">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let element"> {{ element?.failedTotal }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

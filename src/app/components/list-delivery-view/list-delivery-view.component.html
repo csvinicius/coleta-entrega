@@ -1,0 +1,65 @@
+<div class="mat-elevation-z8">
+  <div class="filter-container">
+    <mat-form-field>
+      <mat-label>Filtrar por Motorista</mat-label>
+      <mat-select 
+        [(ngModel)]="selectedDriver" 
+        name="driver"
+        (selectionChange)="applyFilter()">
+        @for (driver of driverNamesList; track $index) {
+          <mat-option 
+            [value]="driver">
+            {{ driver }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Filtrar por Status</mat-label>
+      <mat-select 
+        [(ngModel)]="selectedStatus" 
+        name="status"
+        (selectionChange)="applyFilter()">
+        @for (status of statusList; track $index) {
+          <mat-option
+            [value]="status">
+            {{ status }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="motorista">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Motorista </th>
+      <td mat-cell *matCellDef="let element"> {{element?.motorista?.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cliente_origem_bairro">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bairro Origem </th>
+      <td mat-cell *matCellDef="let element"> {{element?.cliente_origem?.bairro}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cliente_destino_bairro">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bairro Destino </th>
+      <td mat-cell *matCellDef="let element"> {{element?.cliente_destino?.bairro}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status_entrega">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status_entrega}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator 
+    [pageSizeOptions]="[10, 20, 40]" 
+    showFirstLastButtons 
+    aria-label="Selecione a página">
+  </mat-paginator>
+</div>
