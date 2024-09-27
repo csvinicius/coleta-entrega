@@ -1,8 +1,15 @@
-.filter-container {
+@import "../../../styles.scss";
+
+.filter__container {
   display: flex;
   justify-content: end;
+  align-items: center;
   
   mat-form-field {
-    margin: 8px;
+    margin: 0.5rem;
+  }
+
+ button.mat-mdc-unelevated-button:not(:disabled) {
+    background-color: #feac0f;
   }
 }

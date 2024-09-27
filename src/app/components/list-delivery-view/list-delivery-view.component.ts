@@ -1,33 +1,34 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatSort, MatSortModule } from '@angular/material/sort';
 import { AppService } from '../../app.service';
-import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-list-delivery-view',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule,
-    FormsModule
+    MatButtonModule,
+    MatCardModule
   ],
   templateUrl: './list-delivery-view.component.html',
   styleUrl: './list-delivery-view.component.scss'
 })
 export class ListDeliveryViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   dataList: any = [];
   driverNamesList: string[];
@@ -49,7 +50,6 @@ export class ListDeliveryViewComponent implements OnInit {
       this.dataList = response;
       this.dataSource = new MatTableDataSource(this.dataList);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
       this.getDriversNames();
       this.getStatus();
     });
@@ -90,15 +90,13 @@ export class ListDeliveryViewComponent implements OnInit {
 
     this.dataSource = new MatTableDataSource(filteredData);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   clearFilters(): void {
     this.selectedDriver = '';
     this.selectedStatus = '';
-    this.dataSource.data = new MatTableDataSource(this.dataList);
+    this.dataSource = new MatTableDataSource(this.dataList);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
 }

@@ -1,11 +1,15 @@
 .menu__container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  justify-content: start;
 
   a {
     padding: 8px;
     text-decoration: none;
-    color: #000;
+    color: #fff;
+  }
+
+  a.active {
+    color: #feac0f;
   }
 }

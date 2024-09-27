@@ -1,27 +1,27 @@
-<mat-card class="card-container" appearance="outlined">
+<mat-card class="card__container" appearance="outlined">
   <mat-card-header>
-    <mat-card-title>Entregas por bairro</mat-card-title>
+    <mat-card-title class="card__title">Entregas por bairro</mat-card-title>
   </mat-card-header>
   <mat-card-content>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Bairro </th>
-        <td mat-cell *matCellDef="let element"> {{  element?.name  }} </td>
+        <mat-header-cell *matHeaderCellDef> Bairro </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{  element?.name  }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="deliveryTotal">
-        <th mat-header-cell *matHeaderCellDef> Total </th>
-        <td mat-cell *matCellDef="let element"> {{ element?.deliveryTotal }} </td>
+        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element?.deliveryTotal }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="completedTotal">
-        <th mat-header-cell *matHeaderCellDef> Realizadas </th>
-        <td mat-cell *matCellDef="let element"> {{ element?.completedTotal }} </td>
+        <mat-header-cell *matHeaderCellDef> Realizadas </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element?.completedTotal }} </mat-cell>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
   </mat-card-content>
 </mat-card>
